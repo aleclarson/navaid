@@ -5,15 +5,15 @@ const { minify } = require('terser');
 const sizer = require('gzip-size');
 const pkg = require('./package');
 const ESM = fs.readFileSync('src/index.js', 'utf8');
-const regexparam = require('regexparam').toString();
+const regexparam = require('regexparam').parse.toString();
 
 mkdir('dist').then(() => {
 	// Copy as is for ESM
 	fs.writeFileSync(pkg.module, ESM);
 
 	// Mutate (im|ex)ports for CJS
-	const CJS = regexparam.replace('function ', 'function convert ').concat(
-		ESM.replace(`import convert from 'regexparam';`, '')
+	const CJS = regexparam.concat(
+		ESM.replace(`import {parse} from 'regexparam';`, '')
 			.replace(/export default/, 'module.exports =')
 	);
 
