@@ -1,5 +1,5 @@
 {
-  "name": "navaid",
+  "name": "@cush/navaid",
   "version": "1.2.0",
   "repository": "lukeed/navaid",
   "description": "A navigation aid (aka, router) for the browser in 865 bytes~!",
